@@ -1,1 +1,1 @@
-##Learning and Testing models on three js for [https://cryptocodeschool.in/](https://cryptocodeschool.in/)
+Learning and Testing 3D models on three js for [https://cryptocodeschool.in/](https://cryptocodeschool.in/)
