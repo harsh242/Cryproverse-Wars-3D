@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning three JS</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://threejs.org/build/three.js"></script>
+
+
+    <script>
+        import {
+            GLTFLoader
+        } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+        var loader = new GLTFLoader();
+
+        loader.load('scene.gltf', function (gltf) {
+
+            scene.add(gltf.scene);
+
+        }, undefined, function (error) {
+
+            console.error(error);
+
+        });
+    </script>
+</body>
+
+</html>
