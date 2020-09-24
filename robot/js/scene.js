@@ -95,10 +95,18 @@ Object.keys(markerdata).forEach(function (key) {
   scene.add(markerContainer);
 });
 
-
 //helper gui
 
+function addHelper() {
+  var geometry3 = new THREE.SphereGeometry(0, 0.05, 32, 32);
+  var material3 = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
+  var markerHelper = new THREE.Mesh(geometry3, material3);
+  scene.add(markerHelper);
 
+  markerHelper.position.set(0, 0, 0.01);
+}
+
+addHelper();
 
 animate();
