@@ -53,4 +53,52 @@ var animate = function () {
   renderer.render(scene, camera);
 };
 
+//markers
+
+let markers = [];
+let markerdata = [
+  {
+    position: [0, 0, 0.2],
+    headline: "One",
+    description: "",
+  },
+  {
+    position: [-0.2, 0, 0.2],
+    headline: "Two",
+    description: "",
+  },
+];
+
+Object.keys(markerdata).forEach(function (key) {
+  const marker = markerdata[key];
+  console.log(marker);
+
+  var markerContainer = new THREE.Object3D();
+
+  var geometry = new THREE.TorusGeometry(0.06, 0.01, 2, 100);
+  var material = new THREE.MeshBasicMaterial({ color: 0xccccccc });
+
+  var torus = new THREE.Mesh(geometry, material);
+  markerContainer.add(torus);
+
+  var geometry1 = new THREE.CircleGeometry(0.05, 32);
+  var material1 = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.5,
+  });
+  var circle = new THREE.Mesh(geometry1, material1);
+  markerContainer.add(circle);
+
+  markerContainer.position.set(marker.position[0], marker.position[1]);
+
+  scene.add(markerContainer);
+});
+
+
+//helper gui
+
+
+
+
 animate();
