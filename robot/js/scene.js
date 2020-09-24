@@ -105,8 +105,15 @@ function addHelper() {
   scene.add(markerHelper);
 
   markerHelper.position.set(0, 0, 0.01);
+
+  var gui = new dat.GUI();
+  gui.add(markerHelper.position, "x", -1, 1).step(0.00001);
+  gui.add(markerHelper.position, "y", -1, 1).step(0.00001);
+  gui.add(markerHelper.position, "z", -1, 1).step(0.00001);
 }
 
 addHelper();
+
+//end of helper gui
 
 animate();
