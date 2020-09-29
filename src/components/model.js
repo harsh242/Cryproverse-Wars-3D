@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import * as THREE from "three";
-import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
+import GLTFLoader from "three-gltf-loader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import robot from "./scene.gltf";
+
 class Model extends Component {
   componentDidMount() {
     const width = this.mount.clientWidth;
@@ -34,12 +36,22 @@ class Model extends Component {
     this.scene.add(lights[2]);
     //ADD Your 3D Models here
 
-    const bufferCubegeometry = new THREE.BoxBufferGeometry(5, 5, 5);
-    const material = new THREE.MeshBasicMaterial({
-      color: 0xffff00,
-    });
-    this.cubeBufferMesh = new THREE.Mesh(bufferCubegeometry, material);
-    this.scene.add(this.cubeBufferMesh);
+    const loader = new GLTFLoader();
+    loader.load(
+      "scene.gltf",
+      (gltf) => {
+        // called when the resource is loaded
+        this.scene.add(gltf.scene);
+      },
+      (xhr) => {
+        // called while loading is progressing
+        console.log(`${(xhr.loaded / xhr.total) * 100}% loaded`);
+      },
+      (error) => {
+        // called when loading has errors
+        console.error("An error happened", error);
+      }
+    );
 
     this.renderScene();
     //start animation
@@ -71,7 +83,7 @@ class Model extends Component {
   render() {
     return (
       <div
-        style={{ width: "1920px", height: "1080px" }}
+        style={{ width: "800px", height: "800px" }}
         ref={(mount) => {
           this.mount = mount;
         }}
@@ -79,4 +91,4 @@ class Model extends Component {
     );
   }
 }
-export default ThreeScene;
+export default Model;

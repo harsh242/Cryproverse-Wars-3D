@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import ThreeScene from "./components/cube";
+import Model from "./components/model";
 
 function App() {
   return (
     <div className="App">
-      <ThreeScene />
+      <Model />
     </div>
   );
 }
