@@ -50,7 +50,27 @@ class Model extends Component {
     floor.position.y = -1;
     this.scene.add(floor);
 
-    //External 3D Model Code
+    var grid = new THREE.GridHelper(200, 40, 0x000000, 0x000000);
+    grid.material.opacity = 0.1;
+    grid.material.transparent = true;
+    this.scene.add(grid);
+
+    //External 3D Model Code + Customization Part
+    var activeOption = "Body";
+    // Initial material
+    const INITIAL_MTL = new THREE.MeshPhongMaterial({
+      color: 0xf1f1f1,
+      shininess: 10,
+    });
+
+    const INITIAL_MAP = [
+      { childID: "Body", mtl: INITIAL_MTL },
+      { childID: "Leg_Left", mtl: INITIAL_MTL },
+      { childID: "Leg_Right", mtl: INITIAL_MTL },
+      { childID: "Neck", mtl: INITIAL_MTL },
+      { childID: "Shoulders", mtl: INITIAL_MTL },
+    ];
+
     const colors = [
       {
         color: "66533C",
@@ -86,6 +106,22 @@ class Model extends Component {
 
     buildColors(colors);
 
+    // Select Option
+    const options = document.querySelectorAll(".option");
+
+    for (const option of options) {
+      option.addEventListener("click", selectOption);
+    }
+
+    function selectOption(e) {
+      let option = e.target;
+      activeOption = e.target.dataset.option;
+      for (const otherOption of options) {
+        otherOption.classList.remove("--is-active");
+      }
+      option.classList.add("--is-active");
+    }
+
     // Swatches
     const swatches = document.querySelectorAll(".tray__swatch");
 
@@ -102,32 +138,18 @@ class Model extends Component {
         shininess: color.shininess ? color.shininess : 10,
       });
 
-      setMaterial(theModel, "Body", new_mtl);
+      setMaterial(theModel, activeOption, new_mtl);
     }
 
     function setMaterial(parent, type, mtl) {
       parent.traverse((o) => {
         if (o.isMesh && o.nameID != null) {
-          if (o.nameID == type) {
+          if (o.nameID === type) {
             o.material = mtl;
           }
         }
       });
     }
-
-    // Initial material
-    const INITIAL_MTL = new THREE.MeshPhongMaterial({
-      color: 0xf1f1f1,
-      shininess: 10,
-    });
-
-    const INITIAL_MAP = [
-      { childID: "Body", mtl: INITIAL_MTL },
-      { childID: "Leg_Left", mtl: INITIAL_MTL },
-      { childID: "Leg_Right", mtl: INITIAL_MTL },
-      { childID: "Neck", mtl: INITIAL_MTL },
-      { childID: "Shoulders", mtl: INITIAL_MTL },
-    ];
 
     var theModel;
     const loader = new GLTFLoader();
@@ -183,8 +205,6 @@ class Model extends Component {
     //Animate Models Here
     //ReDraw Scene with Camera and Scene Object
 
-    //Rotate Models
-    if (this.cubeBufferMesh) this.cubeBufferMesh.rotation.y += 0.01;
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
   };
@@ -195,6 +215,24 @@ class Model extends Component {
   render() {
     return (
       <div>
+        {/*} These toggle the the different parts of the chair that can be edited, note data-option is the key that links to the name of the part in the 3D file */}
+        <div class="options">
+          <div class="option --is-active" data-option="Body">
+            <h1>Body</h1>
+          </div>
+          <div class="option" data-option="Leg_Left">
+            <h1>Leg_Left</h1>
+          </div>
+          <div class="option" data-option="Leg_Right">
+            <h1>Leg_Right</h1>
+          </div>
+          <div class="option" data-option="Neck">
+            <h1>Neck</h1>
+          </div>
+          <div class="option" data-option="Shoulders">
+            <h1>Shoulders</h1>
+          </div>
+        </div>
         <div
           style={{ width: "800px", height: "800px" }}
           ref={(mount) => {

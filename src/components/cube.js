@@ -42,6 +42,7 @@ class ThreeScene extends Component {
     this.scene.add(this.cubeBufferMesh);
 
     this.renderScene();
+
     //start animation
     this.start();
   }

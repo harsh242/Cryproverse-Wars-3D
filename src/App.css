@@ -47,31 +47,34 @@ body {
 
 .options {
   position: absolute;
-  left: 0;
+  left: 10%;
+  top: 20%
 }
 
 .option {
   background-size: cover;
   background-position: 50%;
   background-color: white;
+  box-shadow: 0px 0px 32px rgba(136, 152, 170, 0.15);
   margin-bottom: 3px;
   padding: 10px;
   height: 55px;
-  width: 55px;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border-radius: 10%;
 }
 
 .option:hover {
   border-left: 5px solid white;
-  width: 58px;
+  width: 200px;
 }
 
 .option.--is-active {
-  border-right: 3px solid red;
-  width: 58px;
+  color: red;
+  width: 200px;
   cursor: default;
 }
 
@@ -79,7 +82,7 @@ body {
   border-left: none;
 }
 
-.option img {
+.option h1 {
   height: 100%;
   width: auto;
   pointer-events: none;
