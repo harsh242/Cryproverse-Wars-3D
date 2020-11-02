@@ -1,4 +1,4 @@
-Like [Here](https://cryptoverse-wars-3d.firebaseapp.com/).
+Live [Here](https://cryptoverse-wars-3d.firebaseapp.com/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

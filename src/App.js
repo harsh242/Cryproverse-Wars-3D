@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import Model from "./components/model";
+import Badass from "./components/badass";
 
 function App() {
   return (
     <div className="App">
-      <Model />
+      <Badass />
     </div>
   );
 }
