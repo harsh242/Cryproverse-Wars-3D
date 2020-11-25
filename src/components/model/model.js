@@ -10,7 +10,7 @@ function Loading() {
         attach="material"
         color="white"
         transparent
-        opacity={0.6}
+        opacity={0.7}
         roughness={1}
         metalness={0}
       />
