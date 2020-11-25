@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import Badass from "./components/badass";
+import Yellow from "./components/model";
 
 function App() {
   return (
     <div className="App">
-      <Badass />
+      <Yellow />
     </div>
   );
 }
